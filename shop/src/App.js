@@ -3,9 +3,12 @@ import './App.css';
 import {Button, Navbar, Container, Nav} from 'react-bootstrap';
 import data from './data.js'
 import { useState } from 'react';
+import {Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom';
+import Detail from './routes/Detail.js';
 
 function App() {
   let [shoes] = useState(data)
+  let navigate = useNavigate();
 
   return (
     <div className="Main">
@@ -13,29 +16,39 @@ function App() {
         <Container>
           <Navbar.Brand href="#home">ShoeShop</Navbar.Brand>
           <Nav ClassName="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Cart</Nav.Link>
+            <Nav.Link onClick={()=> {navigate('/')}}>Home</Nav.Link>
+            <Nav.Link onClick={()=> {navigate('/detail')}}>Detail</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
-      <div className='main-bg'></div>
-      <div className="container">
-        <div className='row'>
-          <Card shoes={shoes[0]} i={1}></Card>
-          <Card shoes={shoes[1]} i={2}></Card>
-          <Card shoes={shoes[2]} i={3}></Card>
-        </div>
-      </div>
+
+
+      <Routes>
+        <Route path="/" element={
+          <>
+          <div className='main-bg'></div>
+          <div className="container">
+            <div className='row'>
+              <Card shoes={shoes[0]} i={1}></Card>
+              <Card shoes={shoes[1]} i={2}></Card>
+              <Card shoes={shoes[2]} i={3}></Card>
+            </div>
+          </div>
+          </>
+        }></Route>
+        <Route path="/detail" element={<Detail/>}></Route>
+      </Routes>
     </div>
   );  
 }
 function Card(props) {
   return (
     <div className='col-md-4'>
-            <img src={process.env.PUBLIC_URL + '/shoe'+props.i+'.png'} width="80%"></img>
+            <img src={process.env.PUBLIC_URL + '/shoe'+props.i+'.png'} width="70%"></img>
             <h4>{props.shoes.title}</h4>
             <p>{props.shoes.price}</p>
           </div>
   )
 }
 export default App;
+
