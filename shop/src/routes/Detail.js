@@ -1,8 +1,9 @@
-import {useState,useEffect } from 'react';
+import {useState,useEffect, useContext } from 'react';
 import {useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import {Nav} from 'react-bootstrap';
 import '../App.css';
+import { 재고Context } from '../App.js';
 // let Box = styled.div`
 //     padding : 20px;
 //     color : grey;
@@ -56,8 +57,10 @@ function Detail (props) {
     //     }
     // }, [] )
 
+    let {재고} = useContext(재고Context)
     return (
         <div className={'container start ' +fade2}>
+            <div>{재고}</div>
             <div className="row">
                 <div className="col-md-6">
                     <img src="/shoe1.png" width="100%"></img>
