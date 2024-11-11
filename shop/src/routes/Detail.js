@@ -42,17 +42,17 @@ function Detail (props) {
     let [fade2, setFade2] = useState('')
 
     useEffect(() => {
-        // myItem.id가 이미 배열에 있으면 추가하지 말아주세용
-        // if 문 써가지고 하면 쉬울 거 같은데...
-        // 중복제거하는 자료형 ==> set(집합)
-        // array를 set으로 변환하면?? 중복 제거 효과
-        let 꺼낸거 = localStorage.getItem('watched')
-        꺼낸거 = JSON.parse(꺼낸거) // string 데이터를 JSON로 파싱
-        꺼낸거.push(myItem.id)
+        // // myItem.id가 이미 배열에 있으면 추가하지 말아주세용
+        // // if 문 써가지고 하면 쉬울 거 같은데...
+        // // 중복제거하는 자료형 ==> set(집합)
+        // // array를 set으로 변환하면?? 중복 제거 효과
+        // let 꺼낸거 = localStorage.getItem('watched')
+        // 꺼낸거 = JSON.parse(꺼낸거) // string 데이터를 JSON로 파싱
+        // 꺼낸거.push(myItem.id)
         
-        꺼낸거 = new Set(꺼낸거) //set으로 변환
-        꺼낸거 = Array.from(꺼낸거) // Array로 변환
-        localStorage.setItem('watched',JSON.stringify(꺼낸거))
+        // 꺼낸거 = new Set(꺼낸거) //set으로 변환
+        // 꺼낸거 = Array.from(꺼낸거) // Array로 변환
+        // localStorage.setItem('watched',JSON.stringify(꺼낸거))
     }, [])
 
     useEffect(() => {
